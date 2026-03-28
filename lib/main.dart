@@ -23,7 +23,9 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('CounterApp'),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.logout_rounded)),
+            IconButton(onPressed: () {
+              exit(0);
+            }, icon: Icon(Icons.logout_rounded)),
           ],
           leading: Icon(Icons.menu_book_rounded),
         ),
