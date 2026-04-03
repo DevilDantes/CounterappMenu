@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int counter = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,9 +24,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('CounterApp'),
           actions: [
-            IconButton(onPressed: () {
-              exit(0);
-            }, icon: Icon(Icons.logout_rounded)),
+            IconButton(
+              onPressed: () {
+                // ⚠️ Esto puede dar error si no importas dart:io
+                // exit(0);
+              },
+              icon: Icon(Icons.logout_rounded),
+            ),
           ],
           leading: Icon(Icons.menu_book_rounded),
         ),
@@ -41,8 +46,8 @@ class _MyAppState extends State<MyApp> {
                 counter == 0
                     ? 'Cero clicks'
                     : counter == 1
-                    ? 'Click'
-                    : 'Clicks',
+                        ? 'Click'
+                        : 'Clicks',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -51,28 +56,31 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
         ),
+
+        // 🔥 AQUÍ USAS TU WIDGET PERSONALIZADO
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton(
+            _CustomButton(
+              icon: Icons.refresh_rounded,
               onPressed: () {
                 setState(() {
                   counter = 0;
                 });
               },
-              child: Icon(Icons.refresh_rounded),
             ),
             SizedBox(height: 10),
-            FloatingActionButton(
+            _CustomButton(
+              icon: Icons.plus_one_rounded,
               onPressed: () {
                 setState(() {
                   counter++;
                 });
               },
-              child: Icon(Icons.plus_one_rounded),
             ),
             SizedBox(height: 10),
-            FloatingActionButton(
+            _CustomButton(
+              icon: Icons.exposure_minus_1_rounded,
               onPressed: () {
                 setState(() {
                   if (counter > 0) {
@@ -80,12 +88,29 @@ class _MyAppState extends State<MyApp> {
                   }
                 });
               },
-              child: Icon(Icons.exposure_minus_1_rounded),
             ),
-            SizedBox(height: 10),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CustomButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const _CustomButton({
+    Key? key,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: onPressed,
+      child: Icon(icon),
     );
   }
 }
