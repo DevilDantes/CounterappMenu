@@ -26,8 +26,6 @@ class _MyAppState extends State<MyApp> {
           actions: [
             IconButton(
               onPressed: () {
-                // ⚠️ Esto puede dar error si no importas dart:io
-                // exit(0);
               },
               icon: Icon(Icons.logout_rounded),
             ),
