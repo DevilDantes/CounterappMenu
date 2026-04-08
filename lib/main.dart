@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -18,17 +18,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorSchemeSeed: Colors.purple),
+      theme: ThemeData(primarySwatch: Colors.purple),
       title: 'CounterApp',
       home: Scaffold(
         appBar: AppBar(
           title: Text('CounterApp'),
           actions: [
-            IconButton(
-              onPressed: () {
-              },
-              icon: Icon(Icons.logout_rounded),
-            ),
+            IconButton(onPressed: () {}, icon: Icon(Icons.logout_rounded)),
           ],
           leading: Icon(Icons.menu_book_rounded),
         ),
@@ -44,18 +40,13 @@ class _MyAppState extends State<MyApp> {
                 counter == 0
                     ? 'Cero clicks'
                     : counter == 1
-                        ? 'Click'
-                        : 'Clicks',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                    ? 'Click'
+                    : 'Clicks',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ],
           ),
         ),
-
-        // 🔥 AQUÍ USAS TU WIDGET PERSONALIZADO
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -98,17 +89,22 @@ class _CustomButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
 
-  const _CustomButton({
-    Key? key,
-    required this.icon,
-    required this.onPressed,
-  }) : super(key: key);
+  const _CustomButton({Key? key, required this.icon, required this.onPressed})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      elevation: 8.0,
+      backgroundColor: Colors.purple, // Color púrpura fuerte
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0), // Bordes menos redondos
+      ),
       onPressed: onPressed,
-      child: Icon(icon),
+      child: Icon(
+        icon,
+        color: Colors.white, // Ícono en blanco
+      ),
     );
   }
 }
