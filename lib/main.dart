@@ -96,14 +96,14 @@ class _CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       elevation: 8.0,
-      backgroundColor: Colors.purple, // Color púrpura fuerte
+      backgroundColor: Colors.purple, 
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0), // Bordes menos redondos
+        borderRadius: BorderRadius.circular(12.0), 
       ),
       onPressed: onPressed,
       child: Icon(
         icon,
-        color: Colors.white, // Ícono en blanco
+        color: Colors.white, 
       ),
     );
   }
