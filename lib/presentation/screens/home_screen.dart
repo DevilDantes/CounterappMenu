@@ -6,6 +6,9 @@ import 'package:flutter_application_1/presentation/screens/mision_screen.dart';
 import 'package:flutter_application_1/presentation/screens/vision_screen.dart';
 import 'package:flutter_application_1/presentation/screens/contacto_screen.dart';
 import 'package:flutter_application_1/presentation/screens/login_screen.dart';
+import 'package:flutter_application_1/presentation/screens/perfil_screen.dart';
+import 'package:flutter_application_1/presentation/screens/configuracion_screen.dart';
+import 'package:flutter_application_1/presentation/screens/acerca_de_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,66 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.logout_rounded),
           ),
         ],
-        //leading: Icon(Icons.menu_rounded),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(child: Image.asset('images/logo.png')),
-            ListTile(
-              title: Text('Inicio'),
-              subtitle: Text('Pagina de inicio'),
-              leading: CircleAvatar(child: Icon(Icons.home)),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('Mision'),
-              subtitle: Text('Mision empresarial'),
-              leading: CircleAvatar(child: Icon(Icons.military_tech_sharp)),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MisionScreen()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Vision'),
-              subtitle: Text('Vision empresarial'),
-              leading: CircleAvatar(child: Icon(Icons.visibility)),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => VisionScreen()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Contacto'),
-              subtitle: Text('Contactanos'),
-              leading: CircleAvatar(child: Icon(Icons.contact_mail)),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ContactoScreen()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Login'),
-              subtitle: Text('Iniciar sesion'),
-              leading: CircleAvatar(child: Icon(Icons.login)),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: buildMenu(context),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
